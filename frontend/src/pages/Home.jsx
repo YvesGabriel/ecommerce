@@ -1,38 +1,22 @@
 import MainLayout from "../layout/MainLayout";
+import ProductCard from "../components/ProductCard";
 import { products } from "../services/products";
-import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
 
 export default function Home() {
-  const { addItem } = useCart();
-
   return (
     <MainLayout>
-      <div className="grid grid-cols-2 gap-4">
-        {products.map((p) => (
-          <Link
-            key={p.id}
-            to={`/produto/${p.id}`}
-            className="border p-2 block"
-          >
-            <img src={p.image} alt={p.name} />
-            <h2>{p.name}</h2>
-            <p>R$ {p.price}</p>
+      <section className="mb-8">
+        <h1 className="text-3xl font-bold">Destaques</h1>
+        <p className="mt-1 text-gray-600">
+          Confira os produtos mais recentes da loja.
+        </p>
+      </section>
 
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                addItem(p);
-              }}
-              className="bg-black text-white px-3 py-1 mt-2"
-            >
-              Adicionar
-            </button>
-          </Link>
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
-      </div>
+      </section>
     </MainLayout>
   );
 }

@@ -1,11 +1,13 @@
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function MainLayout({ children }) {
   return (
-    <div>
-      <Header />
-      <main className="p-4">{children}</main>
+    <div className="flex min-h-screen flex-col bg-gray-50">
+      <Navbar />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
+        {children}
+      </main>
       <Footer />
     </div>
   );
